@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>706909955510-k8v5441lrriuctvqq1g525t5ocl3sdfi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.706909955510-k8v5441lrriuctvqq1g525t5ocl3sdfi</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDXM8HuGj8z-wdwMOH5Cvjiv8xr7jLaQD0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>706909955510</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mursel.carbonfootprint</string>
+	<key>PROJECT_ID</key>
+	<string>carbonfootprintcalculato-a5965</string>
+	<key>STORAGE_BUCKET</key>
+	<string>carbonfootprintcalculato-a5965.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:706909955510:ios:38f85df2d3e04b530c4d17</string>
+</dict>
+</plist>

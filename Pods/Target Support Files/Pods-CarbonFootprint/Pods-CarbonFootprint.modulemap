@@ -1,0 +1,6 @@
+framework module Pods_CarbonFootprint {
+  umbrella header "Pods-CarbonFootprint-umbrella.h"
+
+  export *
+  module * { export * }
+}
