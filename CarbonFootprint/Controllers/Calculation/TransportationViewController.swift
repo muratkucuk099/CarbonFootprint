@@ -39,6 +39,11 @@ class TransportationViewController: UIViewController {
         
     }
     
+    @IBAction func recordButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "toRecord", sender: nil)
+    }
+    
+    
     @IBAction func vehicleButton(_ sender: UIButton) {
         vehicleType = (sender.titleLabel?.text)!
         myPickerView.selectRow(0, inComponent: 0, animated: true)
@@ -67,6 +72,12 @@ class TransportationViewController: UIViewController {
         myPickerView.reloadAllComponents()
         type = currencyArray[0]
         
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRecord" {
+            guard let mapViewController = segue.destination as? MapViewController else {return}
+            mapViewController.type = type
+        }
     }
     @IBAction func uploadPress(_ sender: UIButton) {
         

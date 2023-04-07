@@ -2,8 +2,10 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t0Q-i0-FgM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -45,7 +47,7 @@
         <!--Tree-->
         <scene sceneID="Tj1-n0-ENf">
             <objects>
-                <viewController id="kFt-jl-Tld" customClass="TreeViewController" customModule="CarbonFootprintCalculatorDemo1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kFt-jl-Tld" customClass="TreeViewController" customModule="CarbonFootprint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EFG-Vn-4u1">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,7 +63,7 @@
         <!--My Emissions-->
         <scene sceneID="DKv-be-oae">
             <objects>
-                <viewController id="QBz-X2-Xmf" customClass="InformationViewController" customModule="CarbonFootprintCalculatorDemo1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QBz-X2-Xmf" customClass="InformationViewController" customModule="CarbonFootprint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2CX-lI-3Vf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,7 +105,7 @@
         <!--House Hold View Controller-->
         <scene sceneID="Jke-06-5gW">
             <objects>
-                <viewController id="FiS-cD-SM3" customClass="HouseHoldViewController" customModule="CarbonFootprintCalculatorDemo1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FiS-cD-SM3" customClass="HouseHoldViewController" customModule="CarbonFootprint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LEG-0d-BLj">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,7 +281,7 @@
         <!--View Controller-->
         <scene sceneID="Y3E-f2-d7o">
             <objects>
-                <viewController id="cs5-C3-oUO" customClass="ViewController" customModule="CarbonFootprintCalculatorDemo1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cs5-C3-oUO" customClass="ViewController" customModule="CarbonFootprint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8On-TF-J4D">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -347,7 +349,7 @@
         <!--Main Page View Controller-->
         <scene sceneID="rkV-WI-ExB">
             <objects>
-                <viewController id="hqR-7M-D4x" customClass="MainPageViewController" customModule="CarbonFootprintCalculatorDemo1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hqR-7M-D4x" customClass="MainPageViewController" customModule="CarbonFootprint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cxi-9Y-lfa">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -444,7 +446,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="NKl-Xw-L7L">
             <objects>
-                <tabBarController storyboardIdentifier="TabBar" id="HAN-9J-5Ra" customClass="TabBarController" customModule="CarbonFootprintCalculatorDemo1" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBar" id="HAN-9J-5Ra" customClass="TabBarController" customModule="CarbonFootprint" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="4uC-dH-QlO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ryg-vs-1gr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
@@ -480,10 +482,75 @@
             </objects>
             <point key="canvasLocation" x="1096.9465648854962" y="762.67605633802816"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="F16-07-OjX">
+            <objects>
+                <viewController id="SEt-OF-qhX" customClass="MapViewController" customModule="CarbonFootprint" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bhD-Kd-MaC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lce-AR-BUo">
+                                <rect key="frame" x="16" y="103" width="361" height="384"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mmL-Mj-2ef">
+                                <rect key="frame" x="89" y="593" width="44" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled">
+                                    <imageReference key="image" image="play.fill" catalog="system" symbolScale="large"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="startButton:" destination="SEt-OF-qhX" eventType="touchUpInside" id="DgH-0w-mAT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3o-Vp-Pr4">
+                                <rect key="frame" x="264" y="594" width="42" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled">
+                                    <imageReference key="image" image="pause.fill" catalog="system" symbolScale="large"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="stopButton:" destination="SEt-OF-qhX" eventType="touchUpInside" id="vdo-av-IHK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ZF-ED-vNT">
+                                <rect key="frame" x="149" y="707" width="95" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Calculate"/>
+                                <connections>
+                                    <action selector="calculateButton:" destination="SEt-OF-qhX" eventType="touchUpInside" id="hy4-rg-qcr"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtL-Kj-B6p">
+                                <rect key="frame" x="16" y="529" width="361" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aEZ-tD-03i"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3kA-bz-Y5M"/>
+                    <connections>
+                        <outlet property="distanceLabel" destination="DtL-Kj-B6p" id="a2a-ri-tLC"/>
+                        <outlet property="mapView" destination="lce-AR-BUo" id="3oI-Pg-CDQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1xT-dC-geu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100" y="1511.267605633803"/>
+        </scene>
         <!--Calculation Page-->
         <scene sceneID="p5A-al-Pyp">
             <objects>
-                <viewController id="Ko5-Jg-X4e" customClass="TransportationViewController" customModule="CarbonFootprintCalculatorDemo1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ko5-Jg-X4e" customClass="TransportationViewController" customModule="CarbonFootprint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eGU-J8-MUX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -649,21 +716,36 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LBm-8F-S72">
-                                                        <rect key="frame" x="149" y="140" width="95" height="47"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Calculate" cornerStyle="large">
-                                                            <color key="baseBackgroundColor" red="0.033804888409999997" green="0.46255160099999998" blue="0.058817422690000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="uploadPress:" destination="Ko5-Jg-X4e" eventType="touchUpInside" id="8QE-8S-Qig"/>
-                                                        </connections>
-                                                    </button>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="ThJ-kv-oQl">
+                                                        <rect key="frame" x="40" y="140" width="313" height="47"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LBm-8F-S72">
+                                                                <rect key="frame" x="0.0" y="0.0" width="126.66666666666667" height="47"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="filled" title="Calculate" cornerStyle="large">
+                                                                    <color key="baseBackgroundColor" red="0.033804888409999997" green="0.46255160099999998" blue="0.058817422690000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="uploadPress:" destination="Ko5-Jg-X4e" eventType="touchUpInside" id="8QE-8S-Qig"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSn-Eu-fIH">
+                                                                <rect key="frame" x="186.66666666666666" y="0.0" width="126.33333333333334" height="47"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="filled" title="Record" cornerStyle="large"/>
+                                                                <connections>
+                                                                    <action selector="recordButton:" destination="Ko5-Jg-X4e" eventType="touchUpInside" id="vvy-UG-euE"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="ThJ-kv-oQl" secondAttribute="trailing" constant="40" id="5Kx-OB-c4b"/>
                                                     <constraint firstAttribute="trailing" secondItem="d3p-22-uqI" secondAttribute="trailing" constant="16" id="5c0-M6-f1s"/>
                                                     <constraint firstItem="d3p-22-uqI" firstAttribute="leading" secondItem="JQu-db-bdw" secondAttribute="leading" constant="16" id="A1p-zD-gXv"/>
                                                     <constraint firstItem="5Ih-gj-US2" firstAttribute="leading" secondItem="JQu-db-bdw" secondAttribute="leading" constant="16" id="V5W-nt-1Nq"/>
+                                                    <constraint firstItem="ThJ-kv-oQl" firstAttribute="leading" secondItem="JQu-db-bdw" secondAttribute="leading" constant="40" id="fVw-4E-fTz"/>
                                                     <constraint firstAttribute="trailing" secondItem="5Ih-gj-US2" secondAttribute="trailing" constant="16" id="jcY-Uj-V2Y"/>
                                                 </constraints>
                                             </stackView>
@@ -696,6 +778,7 @@
                         <outlet property="myPickerView" destination="iZB-8f-Piw" id="iMk-pU-GYA"/>
                         <outlet property="uploadButton" destination="LBm-8F-S72" id="QEf-WG-Hd4"/>
                         <outlet property="vehicleTypeLabel" destination="NIO-mf-t6b" id="vjC-Vv-x8k"/>
+                        <segue destination="SEt-OF-qhX" kind="show" identifier="toRecord" id="O6p-rb-f5n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ml-2l-kwM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -711,7 +794,9 @@
         <image name="car.side" catalog="system" width="128" height="59"/>
         <image name="flame" catalog="system" width="106" height="128"/>
         <image name="homekit" catalog="system" width="128" height="104"/>
+        <image name="pause.fill" catalog="system" width="117" height="128"/>
         <image name="person" catalog="system" width="128" height="121"/>
+        <image name="play.fill" catalog="system" width="117" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="tree" catalog="system" width="128" height="118"/>
         <systemColor name="systemBackgroundColor">
