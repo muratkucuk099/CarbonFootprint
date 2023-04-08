@@ -28,6 +28,8 @@ class MainPageViewController: UIViewController {
         
         firebaseGetData()
     }
+   
+
     
     func firebaseGetData() {
         
@@ -36,10 +38,10 @@ class MainPageViewController: UIViewController {
         let userCollection = db.collection("users").document(user!.uid).collection(user!.email!)
         userCollection.addSnapshotListener { querySnapshot, error in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             } else {
                 
-                if let queryDocument = querySnapshot?.documents {
+                if (querySnapshot?.documents) != nil {
                     let query = userCollection.whereField("CarbonEmission",  isGreaterThan: 0)
                     var totalAmount = 0.0
                     query.getDocuments { (querySnapshot, error) in
