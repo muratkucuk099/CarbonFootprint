@@ -31,21 +31,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         mapView.delegate = self
-        // konum verilerini alma
-        
-        
+        mapView.layer.cornerRadius = 15 // Köşelerin yuvarlatılması
+        mapView.layer.borderWidth = 2 // Kenarlık kalınlığı
+        mapView.layer.borderColor = UIColor.gray.cgColor
+        distanceLabel.layer.cornerRadius = 15
+        distanceLabel.layer.borderWidth = 2
+        distanceLabel.layer.borderColor = UIColor.gray.cgColor// Kenarlık rengi
     }
-    
-    @IBAction func startButton(_ sender: UIButton) {
-        isRecord = true
-        print("startttt")
-    }
-    
-    @IBAction func stopButton(_ sender: UIButton) {
-        isRecord = false
-        print("stopp")
-    }
-    
     @IBAction func calculateButton(_ sender: UIButton) {
         locationManager.stopUpdatingLocation()
         
@@ -55,7 +47,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 requestManager.uploadData(type: type, navigationController: self.navigationController!, energyType: "Transportation", emission: carbonEmission, viewController: self)
             } else {
                 alertDialog(viewController: self, title: "Zero Emission!", message: "You need to release carbon emission for calculation. Press play button!")
-            
             }
         }
     }
@@ -63,27 +54,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("updateeeeee")
         guard let newLocation = locations.last else { return }
-               
-               if let lastLocation = self.lastLocation {
-                   let distance = lastLocation.distance(from: newLocation) / 1000
-                   if isRecord{
-                       if distance > 0.0001{
-                           totalDistance += distance
-                       }
-                   }
-                   var locationCoordinate = locations[locations.count - 1].coordinate
-                   let location = CLLocationCoordinate2D(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
-                   let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-                   let region = MKCoordinateRegion(center: location, span: span)
-                   mapView.setRegion(region, animated: true)
-                       mapView.showsUserLocation = true
-                   
-               }
+        
+        if let lastLocation = self.lastLocation {
+            let distance = lastLocation.distance(from: newLocation) / 1000
+            
+            if distance > 0.0001{
+                totalDistance += distance
+            }
+            
+            let locationCoordinate = locations[locations.count - 1].coordinate
+            let location = CLLocationCoordinate2D(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
+            let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            let region = MKCoordinateRegion(center: location, span: span)
+            mapView.setRegion(region, animated: true)
+            mapView.showsUserLocation = true
+            
+        }
         totalKm = String(format: "%.2f", totalDistance)
-        distanceLabel.text = totalKm
-               self.lastLocation = newLocation
-               print("Total distance: \(totalDistance) meters")
-       
+        distanceLabel.text = "Total distance: \(totalKm) km"
+        self.lastLocation = newLocation
     }
     func alertDialog(viewController: UIViewController, title: String, message: String){
         let alertController = UIAlertController(title: title,message: message, preferredStyle: .alert)
