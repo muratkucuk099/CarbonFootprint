@@ -12,7 +12,7 @@ pod 'Firebase'
 pod 'Firebase/Storage'
 pod 'IQKeyboardManager' 
 pod 'IQKeyboardManagerSwift'
-
+pod 'Charts'
   # Pods for CarbonFootprint
 
 end

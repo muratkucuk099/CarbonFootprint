@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Firebase
+import Charts
 
 struct RequestManager{
     let today = Date()
@@ -19,6 +20,8 @@ struct RequestManager{
     let warmArray = ["Natural Gas", "Coal", "LPG", "Fuel Oil", "Biogas"]
     let minutesArray = Array(stride(from: 0, through: 55, by: 5))
     let hoursArray = Array(0...10)
+    let planeArray = ["Plane"]
+    let electricArray = ["Electric"]
     let unitDict = ["Electric": "kwh", "Natural Gas": "m3", "Coal": "kg", "LPG": "lt", "Fuel Oil": "lt", "Biogas": "m3/tonne"]
     
     func getDate()-> String{
@@ -35,8 +38,9 @@ struct RequestManager{
         return userCollection
     }
     
-    func request(userCollection: CollectionReference, energyType: String, labelType: UILabel, completion: @escaping (Float) -> Void) {
-        let query = userCollection.whereField("EnergyType",  isEqualTo: energyType)
+    func request(userCollection: CollectionReference, energyType: String, completion: @escaping (Float) -> Void) {
+       
+            let query = userCollection.whereField("EnergyType",  isEqualTo: energyType)
         var totalAmount = 0.0
         
         DispatchQueue.global(qos: .background).async {
@@ -50,13 +54,35 @@ struct RequestManager{
                         totalAmount += amount
                     }
                     DispatchQueue.main.async {
-                        labelType.text = "\(energyType): \(String(format: "%.2f", totalAmount))"
-                        completion(Float(totalAmount))
+                        completion(Float(String(format: "%.2f", totalAmount))!)
                     }
                 }
             }
         }
     }
+    func requestChart(userCollection: CollectionReference, energyType: [String], completion: @escaping (Double) -> Void) {
+          let query = userCollection.whereField("GeneralType",  in: energyType)
+        var totalAmount = 0.0
+        
+        DispatchQueue.global(qos: .background).async {
+            query.getDocuments {  (querySnapshot, error) in
+                if let error = error {
+                    print("Hata oluştu: \(error.localizedDescription)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        let amount = data["CarbonEmission"] as? Double ?? 0
+                        totalAmount += amount
+                    }
+                    DispatchQueue.main.async {
+                        
+                        completion(Double(String(format: "%.2f", totalAmount))!)
+                    }
+                }
+            }
+        }
+    }
+    
     func uploadData(type: String, navigationController: UINavigationController, energyType: String, emission: Double, viewController: UIViewController){
         let dateString = getDate()
         let documentId = UUID().uuidString

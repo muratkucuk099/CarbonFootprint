@@ -346,7 +346,7 @@
             </objects>
             <point key="canvasLocation" x="911.16279069767438" y="-27.682403433476395"/>
         </scene>
-        <!--Main Page View Controller-->
+        <!--Your Emission-->
         <scene sceneID="rkV-WI-ExB">
             <objects>
                 <viewController id="hqR-7M-D4x" customClass="MainPageViewController" customModule="CarbonFootprint" customModuleProvider="target" sceneMemberID="viewController">
@@ -376,67 +376,34 @@
                                     <segue destination="FiS-cD-SM3" kind="show" id="a31-bg-Shw"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.0 kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFR-SF-n8S">
-                                <rect key="frame" x="16" y="381" width="361" height="41"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7MB-8a-rMI" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="103" width="361" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Emission" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eej-IN-DGT">
-                                <rect key="frame" x="16" y="342" width="361" height="41"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.0 kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFR-SF-n8S">
+                                        <rect key="frame" x="-8" y="219" width="361" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="21"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="unH-dC-Mqz" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="371" width="361" height="297"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.0 kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DG7-g4-ncJ">
-                                <rect key="frame" x="16" y="505" width="361" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total HouseHold Emission" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBW-a9-EIb">
-                                <rect key="frame" x="16" y="466" width="361" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.0 kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2r-6s-iSG">
-                                <rect key="frame" x="16" y="619" width="361" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Transportation Emission" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwu-f9-qkI">
-                                <rect key="frame" x="16" y="580" width="361" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dmb-DQ-DY3">
-                                <rect key="frame" x="16" y="668" width="361" height="4"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="e25-71-NoR">
-                                <rect key="frame" x="16" y="547" width="361" height="4"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ulj-cS-MHH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="wBw-Ua-iod"/>
+                    <navigationItem key="navigationItem" title="Your Emission" largeTitleDisplayMode="always" id="wBw-Ua-iod"/>
                     <connections>
-                        <outlet property="houseHoldCalculationLabel" destination="DG7-g4-ncJ" id="bhn-zu-AtG"/>
-                        <outlet property="houseHoldProgress" destination="e25-71-NoR" id="oD1-Z8-udW"/>
+                        <outlet property="barChartView" destination="unH-dC-Mqz" id="4Dt-8K-xcq"/>
+                        <outlet property="pieChartView" destination="7MB-8a-rMI" id="QmB-Qi-qIb"/>
                         <outlet property="totalCalculationLabel" destination="dFR-SF-n8S" id="sUx-Yn-Wes"/>
-                        <outlet property="transportationCalculationLabel" destination="H2r-6s-iSG" id="NwB-JR-axj"/>
-                        <outlet property="transportationProgress" destination="dmb-DQ-DY3" id="Ket-dg-yPz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQV-jn-tCY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -532,7 +499,7 @@
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYX-GU-GDm">
                                                                                 <rect key="frame" x="180" y="0.0" width="101" height="101.33333333333333"/>
                                                                                 <state key="normal" title="Button"/>
-                                                                                <buttonConfiguration key="configuration" style="filled" title="Motorbike" cornerStyle="large" titleAlignment="automatic">
+                                                                                <buttonConfiguration key="configuration" style="filled" image="bicycle" catalog="system" imagePlacement="top" title="Motorbike" imagePadding="3" cornerStyle="large" titleAlignment="automatic">
                                                                                     <color key="baseBackgroundColor" red="0.22023404469999999" green="0.42704023740000002" blue="0.22629856770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                 </buttonConfiguration>
                                                                                 <connections>
@@ -542,7 +509,7 @@
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQh-T2-Lzs">
                                                                                 <rect key="frame" x="360" y="0.0" width="101" height="101.33333333333333"/>
                                                                                 <state key="normal" title="Button"/>
-                                                                                <buttonConfiguration key="configuration" style="filled" image="bus.fill" catalog="system" imagePlacement="top" title="Bus" cornerStyle="large">
+                                                                                <buttonConfiguration key="configuration" style="filled" image="bus.fill" catalog="system" imagePlacement="top" title="Bus" imagePadding="3" cornerStyle="large">
                                                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <color key="baseBackgroundColor" red="0.22023404469999999" green="0.42704023740000002" blue="0.22629856770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                 </buttonConfiguration>
@@ -795,6 +762,7 @@
     <resources>
         <image name="Murat_kucuk_need_a_logo_about_carbon_footprint_emission_a08b2fc0-ce54-40bf-99fa-ec1f2b87156c" width="1024" height="1024"/>
         <image name="airplane" catalog="system" width="128" height="115"/>
+        <image name="bicycle" catalog="system" width="128" height="78"/>
         <image name="bolt" catalog="system" width="100" height="128"/>
         <image name="bus.fill" catalog="system" width="128" height="122"/>
         <image name="car.side" catalog="system" width="128" height="59"/>
