@@ -12,7 +12,7 @@ import Charts
 
 struct RequestManager{
     let today = Date()
-    let generalTypeDict : [String: Double] = ["Small Benzin Car": 0.1465, "Medium Benzin Car": 0.1847, "Large Benzin Car": 0.2764, "Small Diesel Car": 0.1399, "Medium Diesel Car": 0.1680, "Large Diesel Car": 0.2095, "Small Hybrid Car": 0.1033, "Medium Hybrid Car": 0.1099, "Large Hybrid Car": 0.1549, "Bus": 0.0965, "Coach": 0.0273, "Tram": 0.0286, "Tube": 0.0278, "National Rail": 0.0355, "International Rail": 0.0045, "Electric": 0.4195, "Natural Gas": 2.020, "Coal": 2.040, "LPG": 1.680, "Fuel Oil": 2.960, "Biogas": 0.0, "Plane": 0.0]
+    let generalTypeDict : [String: Double] = ["Small Benzin Car": 0.1465, "Medium Benzin Car": 0.1847, "Large Benzin Car": 0.2764, "Small Diesel Car": 0.1399, "Medium Diesel Car": 0.1680, "Large Diesel Car": 0.2095, "Small Hybrid Car": 0.1033, "Medium Hybrid Car": 0.1099, "Large Hybrid Car": 0.1549, "Bus": 0.0965, "Coach": 0.0273, "Tram": 0.0286, "Tube": 0.0278, "National Rail": 0.0355, "International Rail": 0.0045, "Electric": 0.4195, "Natural Gas": 2.020, "Coal": 2.040, "LPG": 1.680, "Fuel Oil": 2.960, "Biogas": 0.0, "Plane": 0.0, "Small Bike": 0.0831, "Medium Bike": 0.1009, "Large Bike": 0.1325]
     
     let carArray = ["Small Benzin Car", "Medium Benzin Car", "Large Benzin Car", "Small Diesel Car", "Medium Diesel Car", "Large Diesel Car", "Small Hybrid Car", "Medium Hybrid Car", "Large Hybrid Car"]
     let busArray = ["Bus", "Tram", "Coach", "Tube", "National Rail", "International Rail"]

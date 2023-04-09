@@ -19,7 +19,7 @@ class MainPageViewController: UIViewController {
     var total: Float = 0.0
     var transportationDataEntry = PieChartDataEntry(value: 10, icon: UIImage(systemName: "car"))
     var houseHoldDataEntry = PieChartDataEntry(value: 10, icon: UIImage(systemName: "house"))
-    var carDataEntry = BarChartDataEntry(x: 1, y: 20, icon: UIImage(systemName: "car"))
+    var carDataEntry = BarChartDataEntry(x: 1, y: 20, icon: UIImage(systemName: "car.side"))
     var motorDataEntry = BarChartDataEntry(x: 3, y: 20, icon: UIImage(systemName: "bicycle"))
     var busDataEntry = BarChartDataEntry(x: 2, y: 20, icon: UIImage(systemName: "bus.fill"))
     var airPlaneDataEntry = BarChartDataEntry(x: 4, y: 20, icon: UIImage(systemName: "airplane"))

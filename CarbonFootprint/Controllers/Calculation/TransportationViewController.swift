@@ -60,7 +60,6 @@ class TransportationViewController: UIViewController {
         } else if vehicleType == "Bus" {
             currencyArray = requestManager.busArray
         } else if vehicleType == "Motorbike" {
-           
             currencyArray = requestManager.motorcycleArray
         } else if vehicleType == "Plane" {
             vehicleTypeLabel.text = "How long is your travel time?"
@@ -82,6 +81,7 @@ class TransportationViewController: UIViewController {
     @IBAction func uploadPress(_ sender: UIButton) {
         
         if let carbonValue = requestManager.generalTypeDict[type] {
+            print(type)
                 if isPlane{
                     carbonEmission = calculationManager.calculatePlane(hours: hours, minutes: minutes)
                     print("planeee\(carbonEmission)")
