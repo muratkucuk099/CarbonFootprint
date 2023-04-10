@@ -13,6 +13,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var calculationButton: UIButton!
     var locationManager = CLLocationManager()
     let calculationManager = CalculationManager()
     let requestManager = RequestManager()
@@ -25,7 +26,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        calculationButton.isEnabled = false
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -40,9 +41,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     @IBAction func calculateButton(_ sender: UIButton) {
         locationManager.stopUpdatingLocation()
-        
+        var carbonEmission = 0.0
         if let carbonValue = requestManager.generalTypeDict[type]{
-            let carbonEmission = calculationManager.calculateWithKM(carbonValue: carbonValue, amount: Double(totalKm)!)
+             carbonEmission = calculationManager.calculateWithKM(carbonValue: carbonValue, amount: Double(totalKm)!)
             if carbonEmission != 0 {
                 requestManager.uploadData(type: type, navigationController: self.navigationController!, energyType: "Transportation", emission: carbonEmission, viewController: self)
             } else {
@@ -59,6 +60,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let distance = lastLocation.distance(from: newLocation) / 1000
             
             if distance > 0.0001{
+                calculationButton.isEnabled = true
                 totalDistance += distance
             }
             

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "E4A157DF-2C27-412F-938F-D5D4419BF152"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8BA4051F-1BD2-4CF5-8782-F71732CFCB1D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CarbonFootprint/Controllers/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "signUpPress(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8BA4051F-1BD2-4CF5-8782-F71732CFCB1D - 4c3a373aa222750d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CarbonFootprint.ViewController.signUpPress(__C.UIButton) -&gt; ()"
+                  moduleName = "CarbonFootprint"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Developments/SwiftProjects/Tez%20Project/CarbonFootprint/CarbonFootprint/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "1512">
+               </Location>
+               <Location
+                  uuid = "8BA4051F-1BD2-4CF5-8782-F71732CFCB1D - 18119a98b662f30f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CarbonFootprint.ViewController.signUpPress(__C.UIButton) -&gt; ()"
+                  moduleName = "CarbonFootprint"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Developments/SwiftProjects/Tez%20Project/CarbonFootprint/CarbonFootprint/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "152">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

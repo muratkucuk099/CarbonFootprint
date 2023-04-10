@@ -11,26 +11,40 @@ import FirebaseFirestore
 
 class InformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var totalAmountLabel: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
     var informationArray = [String]()
     
-    
-    
     override func viewDidLoad() {
-        navigationItem.hidesBackButton = true
-        super.viewDidLoad()
+        
+         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "FeedTableViewCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-                
-        
       
        firebaseGetData()
-        
-    }
+        let exitButton = UIBarButtonItem(title: "Çıkış", style: .plain, target: self, action: #selector(exitTapped))
+        exitButton.image = UIImage(systemName: "rectangle.portrait.and.arrow.right")
+
+           // gezinme çubuğu başlığının yanındaki sağ taraftaki butonu ayarla
+           navigationItem.rightBarButtonItem = exitButton
+       }
+
+       @objc func exitTapped() {
+           do {
+               try Auth.auth().signOut()
+               let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                   let navigationController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
+                   navigationController.modalPresentationStyle = .fullScreen
+                   present(navigationController, animated: true, completion: nil)
+           } catch {
+               print("Çıkış yaparken hata oluştu")
+           }
+       }
+    
+  
     func firebaseGetData() {
         let db = Firestore.firestore()
         let user = Auth.auth().currentUser

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		045563B029DEBA7200CA5567 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045563AF29DEBA7200CA5567 /* AppDelegate.swift */; };
 		045563B229DEBA7200CA5567 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045563B129DEBA7200CA5567 /* SceneDelegate.swift */; };
-		045563B429DEBA7200CA5567 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045563B329DEBA7200CA5567 /* ViewController.swift */; };
+		045563B429DEBA7200CA5567 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045563B329DEBA7200CA5567 /* LoginViewController.swift */; };
 		045563B729DEBA7200CA5567 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045563B529DEBA7200CA5567 /* Main.storyboard */; };
 		045563B929DEBA7300CA5567 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 045563B829DEBA7300CA5567 /* Assets.xcassets */; };
 		045563BC29DEBA7300CA5567 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045563BA29DEBA7300CA5567 /* LaunchScreen.storyboard */; };
@@ -34,7 +34,7 @@
 		045563AC29DEBA7200CA5567 /* CarbonFootprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarbonFootprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		045563AF29DEBA7200CA5567 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		045563B129DEBA7200CA5567 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		045563B329DEBA7200CA5567 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		045563B329DEBA7200CA5567 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		045563B629DEBA7200CA5567 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		045563B829DEBA7300CA5567 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		045563BB29DEBA7300CA5567 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0418AAF829E439E900AA0B7D /* PropertyController */ = {
+			isa = PBXGroup;
+			children = (
+				04F4962029DEBD6E00555E8C /* TabBarController.swift */,
+			);
+			path = PropertyController;
+			sourceTree = "<group>";
+		};
 		045563A329DEBA7200CA5567 = {
 			isa = PBXGroup;
 			children = (
@@ -118,12 +126,12 @@
 			isa = PBXGroup;
 			children = (
 				04F4961529DEBC8100555E8C /* Calculation */,
-				045563B329DEBA7200CA5567 /* ViewController.swift */,
+				045563B329DEBA7200CA5567 /* LoginViewController.swift */,
 				04F4961A29DEBCFD00555E8C /* InformationViewController.swift */,
 				04F4961C29DEBD1800555E8C /* MainPageViewController.swift */,
 				04F4961E29DEBD3500555E8C /* TreeViewController.swift */,
-				04F4962029DEBD6E00555E8C /* TabBarController.swift */,
 				04F218E829E014AD000C213F /* MapViewController.swift */,
+				0418AAF829E439E900AA0B7D /* PropertyController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -284,7 +292,7 @@
 			files = (
 				04F4960F29DEBC3100555E8C /* RequestManager.swift in Sources */,
 				04F4962129DEBD6E00555E8C /* TabBarController.swift in Sources */,
-				045563B429DEBA7200CA5567 /* ViewController.swift in Sources */,
+				045563B429DEBA7200CA5567 /* LoginViewController.swift in Sources */,
 				04F4960C29DEBC0600555E8C /* K.swift in Sources */,
 				04F4961129DEBC4900555E8C /* CalculationManager.swift in Sources */,
 				04F4961729DEBCB900555E8C /* TransportationViewController.swift in Sources */,

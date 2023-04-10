@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Firebase
 import Charts
+import FirebaseFirestore
 
 struct RequestManager{
     let today = Date()
@@ -75,7 +76,6 @@ struct RequestManager{
                         totalAmount += amount
                     }
                     DispatchQueue.main.async {
-                        
                         completion(Double(String(format: "%.2f", totalAmount))!)
                     }
                 }

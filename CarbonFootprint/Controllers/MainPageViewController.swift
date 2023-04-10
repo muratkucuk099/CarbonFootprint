@@ -14,6 +14,7 @@ import FirebaseFirestore
 class MainPageViewController: UIViewController {
     
     @IBOutlet weak var pieChartView: PieChartView!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet weak var totalCalculationLabel: UILabel!
     @IBOutlet weak var barChartView: BarChartView!
     var total: Float = 0.0
@@ -33,12 +34,22 @@ class MainPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        startLoading()
         pieChartView.chartDescription.text = ""
         barNumberofDataEntry = [carDataEntry]
         pieNumberofDataEntry = [transportationDataEntry, houseHoldDataEntry]
         firebaseGetData()
         
     }
+    func startLoading() {
+        indicatorView.startAnimating()
+        indicatorView.isHidden = false
+    }
+    func stopLoading() {
+        indicatorView.stopAnimating()
+        indicatorView.isHidden = true
+    }
+
     func barChartUpdate() {
         let entries = [
             carDataEntry,
@@ -54,23 +65,24 @@ class MainPageViewController: UIViewController {
         
         let data = BarChartData(dataSet: dataSet)
         barChartView.data = data
-        dataSet.colors = [.red, .orange, .yellow, .green, .blue, .black]
+        dataSet.colors = [UIColor(red: 54/255, green: 104/255, blue: 55/255, alpha: 1)]
         barChartView.xAxis.labelPosition = .bottom
         barChartView.xAxis.labelCount = entries.count
         barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: ["", "Car", "Bus", "Bike", "Plane", "Electric", "Warm"])
         barChartView.leftAxis.axisMinimum = 0
         barChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0)
+        barChartView.layer.borderWidth = 2
+        barChartView.layer.cornerRadius = 15
     }
     func pieChartUpdateData(){
         let chartDataSet = PieChartDataSet(entries: pieNumberofDataEntry, label: "")
         chartDataSet.iconsOffset = CGPoint(x: 10,y: 0)
         let charData = PieChartData(dataSet: chartDataSet)
-        let colors = [UIColor.darkGray, UIColor.systemBrown]
+        let colors = [UIColor(red: 38/255, green: 79/255, blue: 71/255, alpha: 1), UIColor(red: 95/255, green: 176/255, blue: 68/255, alpha: 1)]
         chartDataSet.colors = colors
         pieChartView.data = charData
         pieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0)
-        barChartView.layer.borderWidth = 2
-        barChartView.layer.cornerRadius = 15
+        
     }
     
     func firebaseGetData() {
@@ -94,6 +106,7 @@ class MainPageViewController: UIViewController {
                                 let amount = data["CarbonEmission"] as? Double ?? 0
                                 totalAmount += amount
                             }
+                            self.stopLoading()
                             self.totalCalculationLabel.text = "Total: \(String(format: "%.2f", totalAmount)) kg"
                         }
                     }
@@ -133,8 +146,6 @@ class MainPageViewController: UIViewController {
                         self.warmDataEntry.y = Double(String(format: "%.2f", double))!
                         self.barChartUpdate()
                     }
-                    
-                   
                 }
             }
         }
