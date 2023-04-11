@@ -48,11 +48,15 @@ class LoginViewController: UIViewController {
                     return
                     self.stopLoading()
                 }
-                
+                let currentDate = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let dateString = dateFormatter.string(from: currentDate)
                 let db = Firestore.firestore()
                 let userCollection = db.collection("users").document(user.uid).collection(self.emailTextField.text!)
                     userCollection.document("userInfo").setData([
                     "email": self.emailTextField.text,
+                    "date": dateString
                 ]) { err in
                     if let err = err {
                         print("Doküman oluşturulurken bir hata oluştu: \(err.localizedDescription)")

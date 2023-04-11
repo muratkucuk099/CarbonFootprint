@@ -20,7 +20,7 @@ struct RequestManager{
     let motorcycleArray = ["Small Bike", "Medium Bike", "Large Bike"]
     let warmArray = ["Natural Gas", "Coal", "LPG", "Fuel Oil", "Biogas"]
     let minutesArray = Array(stride(from: 0, through: 55, by: 5))
-    let hoursArray = Array(0...10)
+    let hoursArray = Array(0...20)
     let planeArray = ["Plane"]
     let electricArray = ["Electric"]
     let unitDict = ["Electric": "kwh", "Natural Gas": "m3", "Coal": "kg", "LPG": "lt", "Fuel Oil": "lt", "Biogas": "m3/tonne"]
@@ -40,8 +40,7 @@ struct RequestManager{
     }
     
     func request(userCollection: CollectionReference, energyType: String, completion: @escaping (Float) -> Void) {
-       
-            let query = userCollection.whereField("EnergyType",  isEqualTo: energyType)
+        let query = userCollection.whereField("EnergyType",  isEqualTo: energyType)
         var totalAmount = 0.0
         
         DispatchQueue.global(qos: .background).async {
@@ -61,8 +60,63 @@ struct RequestManager{
             }
         }
     }
+    func requestTotal(userCollection: CollectionReference, completion: @escaping (Double) -> Void){
+        userCollection.addSnapshotListener { querySnapshot, error in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+            } else {
+                
+                if (querySnapshot?.documents) != nil {
+                    let query = userCollection.whereField("CarbonEmission",  isGreaterThan: 0)
+                    var totalAmount = 0.0
+                    query.getDocuments { (querySnapshot, error) in
+                        if let error = error {
+                            print("Hata oluştu: \(error.localizedDescription)")
+                        } else {
+                            for document in querySnapshot!.documents {
+                                let data = document.data()
+                                let amount = data["CarbonEmission"] as? Double ?? 0
+                                totalAmount += amount
+                            }
+                            DispatchQueue.main.async {
+                                completion(Double(String(format: "%.2f", totalAmount))!)
+                                //  self.stopLoading()
+                                //  self.totalCalculationLabel.text = "Total: \(String(format: "%.2f", totalAmount)) kg"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    func firebaseDayCalculation(userCollection: CollectionReference, completion: @escaping (Int) -> Void) {
+        userCollection.getDocuments { (snapshot, error) in
+            guard let documents = snapshot?.documents else {
+                print("Hata: Belge bulunamadı.")
+                return
+            }
+            DispatchQueue.main.async {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd MMM yyyy"
+                let firstDocument = documents.first
+                if let firstDate = firstDocument?.data()["Date"] {
+                    
+                    if let date = dateFormatter.date(from: firstDate as! String) {
+                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                        let today = dateFormatter.string(from: Date())
+                        let formattedDate = dateFormatter.string(from: date)
+                        let startDate = dateFormatter.date(from: formattedDate)
+                        let endDate = dateFormatter.date(from: today)
+                        let calendar = Calendar.current
+                        let components = calendar.dateComponents([.day], from: startDate!, to: endDate!)
+                        completion(components.day!)
+                    }
+                }
+            }
+        }
+    }
     func requestChart(userCollection: CollectionReference, energyType: [String], completion: @escaping (Double) -> Void) {
-          let query = userCollection.whereField("GeneralType",  in: energyType)
+        let query = userCollection.whereField("GeneralType",  in: energyType)
         var totalAmount = 0.0
         
         DispatchQueue.global(qos: .background).async {
@@ -82,49 +136,48 @@ struct RequestManager{
             }
         }
     }
-    
-    func uploadData(type: String, navigationController: UINavigationController, energyType: String, emission: Double, viewController: UIViewController){
-        let dateString = getDate()
-        let documentId = UUID().uuidString
-        let db = Firestore.firestore()
-        let user = Auth.auth().currentUser
-        let userCollection = db.collection("users").document(user!.uid).collection(user!.email!)
-        if emission != nil {
+        func uploadData(type: String, navigationController: UINavigationController, energyType: String, emission: Double, viewController: UIViewController){
+            let dateString = getDate()
+            let documentId = UUID().uuidString
+            let db = Firestore.firestore()
+            let user = Auth.auth().currentUser
+            let userCollection = db.collection("users").document(user!.uid).collection(user!.email!)
+            if emission != nil {
+                userCollection.document(documentId).setData(["EnergyType": energyType, "Date": dateString, "date": FieldValue.serverTimestamp(), "GeneralType": type, "CarbonEmission": emission]) {err in if let err = err {
+                    print("Döküman eklenemedi \(err.localizedDescription)")
+                    alertDialog(navigationController: navigationController, viewController: viewController, title: "Error", message: "Your carbon emission could not be calculated!")
+                    
+                } else {
+                    print("Döküman kaydı eklendi")
+                    let title = "\(emission) kg"
+                    let message = "You have released \(emission) kg of carbon emissions!"
+                    alertDialog(navigationController: navigationController, viewController: viewController, title: title, message: message)
+                }
+            }
+        }
+        
+        func uploadPlaneData(type: String, navigationController: UINavigationController, energyType: String, emission: Double, viewController: UIViewController){
+            let dateString = getDate()
+            let documentId = UUID().uuidString
+            let db = Firestore.firestore()
+            let user = Auth.auth().currentUser
+            let userCollection = db.collection("users").document(user!.uid).collection(user!.email!)
             userCollection.document(documentId).setData(["EnergyType": energyType, "Date": dateString, "date": FieldValue.serverTimestamp(), "GeneralType": type, "CarbonEmission": emission]) {err in if let err = err {
                 print("Döküman eklenemedi \(err.localizedDescription)")
-                alertDialog(navigationController: navigationController, viewController: viewController, title: "Error", message: "Your carbon emission could not be calculated!")
-                
             } else {
                 print("Döküman kaydı eklendi")
-                let title = "\(emission) kg"
-                let message = "You have released \(emission) kg of carbon emissions!"
-                alertDialog(navigationController: navigationController, viewController: viewController, title: title, message: message)
+                
             }
             }
         }
-    }
-    
-    func uploadPlaneData(type: String, navigationController: UINavigationController, energyType: String, emission: Double, viewController: UIViewController){
-        let dateString = getDate()
-        let documentId = UUID().uuidString
-        let db = Firestore.firestore()
-        let user = Auth.auth().currentUser
-        let userCollection = db.collection("users").document(user!.uid).collection(user!.email!)
-        userCollection.document(documentId).setData(["EnergyType": energyType, "Date": dateString, "date": FieldValue.serverTimestamp(), "GeneralType": type, "CarbonEmission": emission]) {err in if let err = err {
-            print("Döküman eklenemedi \(err.localizedDescription)")
-        } else {
-            print("Döküman kaydı eklendi")
-            
-        }
+        func alertDialog(navigationController: UINavigationController, viewController: UIViewController, title: String, message: String){
+            let alertController = UIAlertController(title: title,message: message, preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default) { UIAlertAction in
+                navigationController.popViewController(animated: true)
+            }
+            alertController.addAction(okButton)
+            viewController.present(alertController, animated: true)
         }
     }
-    func alertDialog(navigationController: UINavigationController, viewController: UIViewController, title: String, message: String){
-        let alertController = UIAlertController(title: title,message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default) { UIAlertAction in
-            navigationController.popViewController(animated: true)
-        }
-        alertController.addAction(okButton)
-        viewController.present(alertController, animated: true)
-    }
+    //  "\(emission) kg", message: "You have released \(emission) kg of carbon footprint"
 }
-//  "\(emission) kg", message: "You have released \(emission) kg of carbon footprint"

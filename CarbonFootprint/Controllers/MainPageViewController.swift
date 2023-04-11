@@ -65,7 +65,7 @@ class MainPageViewController: UIViewController {
         
         let data = BarChartData(dataSet: dataSet)
         barChartView.data = data
-        dataSet.colors = [UIColor(red: 54/255, green: 104/255, blue: 55/255, alpha: 1)]
+        dataSet.colors = [ UIColor(red: 38/255, green: 79/255, blue: 71/255, alpha: 1), UIColor(red: 38/255, green: 79/255, blue: 71/255, alpha: 1),  UIColor(red: 38/255, green: 79/255, blue: 71/255, alpha: 1), UIColor(red: 38/255, green: 79/255, blue: 71/255, alpha: 1), UIColor(red: 95/255, green: 176/255, blue: 68/255, alpha: 1), UIColor(red: 95/255, green: 176/255, blue: 68/255, alpha: 1),]
         barChartView.xAxis.labelPosition = .bottom
         barChartView.xAxis.labelCount = entries.count
         barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: ["", "Car", "Bus", "Bike", "Plane", "Electric", "Warm"])
@@ -105,6 +105,7 @@ class MainPageViewController: UIViewController {
                                 let data = document.data()
                                 let amount = data["CarbonEmission"] as? Double ?? 0
                                 totalAmount += amount
+                                //self.pieChartUpdateData()
                             }
                             self.stopLoading()
                             self.totalCalculationLabel.text = "Total: \(String(format: "%.2f", totalAmount)) kg"

@@ -16,6 +16,7 @@ class TransportationViewController: UIViewController {
     @IBOutlet weak var uploadButton: UIButton!
     @IBOutlet weak var myPickerView: UIPickerView!
     @IBOutlet weak var distanceTextfield: UITextField!
+    @IBOutlet weak var recordButton: UIButton!
     var vehicleType: String = "Car"
     var currencyArray: [String] = []
     var type = ""
@@ -39,7 +40,7 @@ class TransportationViewController: UIViewController {
         
     }
     
-    @IBAction func recordButton(_ sender: UIButton) {
+    @IBAction func recordButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "toRecord", sender: nil)
     }
     
@@ -47,13 +48,13 @@ class TransportationViewController: UIViewController {
     @IBAction func vehicleButton(_ sender: UIButton) {
         vehicleType = (sender.titleLabel?.text)!
         myPickerView.selectRow(0, inComponent: 0, animated: true)
-        distanceTextfield.isHidden = false
+        distanceTextfield.isEnabled = true
         distanceTextfield.text = ""
         uploadButton.isEnabled = false
+        recordButton.isEnabled = true
         vehicleTypeLabel.text = "Which type of your \(vehicleType)"
         isPlane = false
         inputLabel.text = "How many km did you travel?"
-        
         
         if vehicleType == "Car" {
             currencyArray = requestManager.carArray
@@ -64,10 +65,10 @@ class TransportationViewController: UIViewController {
         } else if vehicleType == "Plane" {
             vehicleTypeLabel.text = "How long is your travel time?"
             isPlane = true
-            distanceTextfield.isHidden = true
-            inputLabel.text = ""
+            distanceTextfield.isEnabled = false
+            inputLabel.text = "Recording flight is coming soon!"
+            recordButton.isEnabled = false
         }
-        
         myPickerView.reloadAllComponents()
         type = currencyArray[0]
         
@@ -93,12 +94,10 @@ class TransportationViewController: UIViewController {
             }
             requestManager.uploadData(type: type, navigationController: self.navigationController!, energyType: K.transportation, emission: carbonEmission, viewController: self)
         }
-       
     }
 }
 //MARK: -
 extension TransportationViewController: UITextFieldDelegate{
-    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if !isPlane{
             if distanceTextfield.text == "" {
