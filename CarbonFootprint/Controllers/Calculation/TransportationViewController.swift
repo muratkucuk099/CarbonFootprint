@@ -48,7 +48,7 @@ class TransportationViewController: UIViewController {
     @IBAction func vehicleButton(_ sender: UIButton) {
         vehicleType = (sender.titleLabel?.text)!
         myPickerView.selectRow(0, inComponent: 0, animated: true)
-        distanceTextfield.isEnabled = true
+        distanceTextfield.isHidden = false
         distanceTextfield.text = ""
         uploadButton.isEnabled = false
         recordButton.isEnabled = true
@@ -65,7 +65,7 @@ class TransportationViewController: UIViewController {
         } else if vehicleType == "Plane" {
             vehicleTypeLabel.text = "How long is your travel time?"
             isPlane = true
-            distanceTextfield.isEnabled = false
+            distanceTextfield.isHidden = true
             inputLabel.text = "Recording flight is coming soon!"
             recordButton.isEnabled = false
         }

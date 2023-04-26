@@ -18,22 +18,32 @@ class MainPageViewController: UIViewController {
     @IBOutlet weak var totalCalculationLabel: UILabel!
     @IBOutlet weak var barChartView: BarChartView!
     var total: Float = 0.0
-    var transportationDataEntry = PieChartDataEntry(value: 10, icon: UIImage(systemName: "car"))
-    var houseHoldDataEntry = PieChartDataEntry(value: 10, icon: UIImage(systemName: "house"))
-    var carDataEntry = BarChartDataEntry(x: 1, y: 20, icon: UIImage(systemName: "car.side"))
-    var motorDataEntry = BarChartDataEntry(x: 3, y: 20, icon: UIImage(systemName: "bicycle"))
-    var busDataEntry = BarChartDataEntry(x: 2, y: 20, icon: UIImage(systemName: "bus.fill"))
-    var airPlaneDataEntry = BarChartDataEntry(x: 4, y: 20, icon: UIImage(systemName: "airplane"))
-    var electricDataEntry = BarChartDataEntry(x : 5, y: 20, icon: UIImage(systemName: "bolt"))
-    var warmDataEntry = BarChartDataEntry(x: 6, y: 20, icon: UIImage(systemName: "flame"))
+    let transportationDataEntry = PieChartDataEntry(value: 10, icon: UIImage(systemName: "car"))
+    let houseHoldDataEntry = PieChartDataEntry(value: 10, icon: UIImage(systemName: "house"))
+    let carDataEntry = BarChartDataEntry(x: 1, y: 20, icon: UIImage(systemName: "car.side"))
+    let motorDataEntry = BarChartDataEntry(x: 3, y: 20, icon: UIImage(systemName: "bicycle"))
+    let busDataEntry = BarChartDataEntry(x: 2, y: 20, icon: UIImage(systemName: "bus.fill"))
+    let airPlaneDataEntry = BarChartDataEntry(x: 4, y: 20, icon: UIImage(systemName: "airplane"))
+    let electricDataEntry = BarChartDataEntry(x : 5, y: 20, icon: UIImage(systemName: "bolt"))
+    let warmDataEntry = BarChartDataEntry(x: 6, y: 20, icon: UIImage(systemName: "flame"))
     
     var pieNumberofDataEntry = [PieChartDataEntry]()
     var barNumberofDataEntry = [BarChartDataEntry]()
+    var entries: [BarChartDataEntry] = []
     
-    var requestManager = RequestManager()
+    let requestManager = RequestManager()
+    var treemanager = TreeRequest()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        entries = [
+            carDataEntry,
+            busDataEntry,
+            motorDataEntry,
+            airPlaneDataEntry,
+            electricDataEntry,
+            warmDataEntry
+        ]
         startLoading()
         pieChartView.chartDescription.text = ""
         barNumberofDataEntry = [carDataEntry]
@@ -41,6 +51,7 @@ class MainPageViewController: UIViewController {
         firebaseGetData()
         
     }
+    
     func startLoading() {
         indicatorView.startAnimating()
         indicatorView.isHidden = false
@@ -49,16 +60,9 @@ class MainPageViewController: UIViewController {
         indicatorView.stopAnimating()
         indicatorView.isHidden = true
     }
-
+    
     func barChartUpdate() {
-        let entries = [
-            carDataEntry,
-            busDataEntry,
-            motorDataEntry,
-            airPlaneDataEntry,
-            electricDataEntry,
-            warmDataEntry
-        ]
+       
         
         let dataSet = BarChartDataSet(entries: entries, label: "")
         
@@ -86,69 +90,63 @@ class MainPageViewController: UIViewController {
     }
     
     func firebaseGetData() {
+        guard let user = Auth.auth().currentUser else {
+                print("Current user not found.")
+                return
+            }
         let db = Firestore.firestore()
-        let user = Auth.auth().currentUser
-        let userCollection = db.collection("users").document(user!.uid).collection(user!.email!)
+        
+        let userCollection = db.collection("users").document(user.uid).collection(user.email!)
         userCollection.addSnapshotListener { querySnapshot, error in
-            if error != nil {
-                print(error?.localizedDescription as Any)
-            } else {
-                
-                if (querySnapshot?.documents) != nil {
-                    let query = userCollection.whereField("CarbonEmission",  isGreaterThan: 0)
-                    var totalAmount = 0.0
-                    query.getDocuments { (querySnapshot, error) in
-                        if let error = error {
-                            print("Hata oluştu: \(error.localizedDescription)")
-                        } else {
-                            for document in querySnapshot!.documents {
-                                let data = document.data()
-                                let amount = data["CarbonEmission"] as? Double ?? 0
-                                totalAmount += amount
-                                //self.pieChartUpdateData()
-                            }
-                            self.stopLoading()
-                            self.totalCalculationLabel.text = "Total: \(String(format: "%.2f", totalAmount)) kg"
-                        }
-                    }
-                    
-                    self.requestManager.request( userCollection: userCollection, energyType: "Household") {
-                        result in
-                        self.houseHoldDataEntry.value = Double(String(format: "%.1f", result))!
-                        self.pieChartUpdateData()
-                    }
-                    self.requestManager.request(userCollection: userCollection, energyType: "Transportation") {
-                        result in
-                        self.transportationDataEntry.value = Double(String(format: "%.1f", result))!
-                        self.pieChartUpdateData()
-                    }
-                   
-                    self.requestManager.requestChart(userCollection: userCollection, energyType: self.requestManager.carArray) { double in
-                        self.carDataEntry.y = Double(String(format: "%.2f", double))!
-                        self.barChartUpdate()
-                    }
-                    self.requestManager.requestChart(userCollection: userCollection, energyType: self.requestManager.motorcycleArray) { double in
-                        self.motorDataEntry.y = Double(String(format: "%.2f", double))!
-                        self.barChartUpdate()
-                    }
-                    self.requestManager.requestChart(userCollection: userCollection, energyType: self.requestManager.busArray) { double in
-                        self.busDataEntry.y = Double(String(format: "%.2f", double))!
-                        self.barChartUpdate()
-                    }
-                    self.requestManager.requestChart(userCollection: userCollection, energyType: self.requestManager.planeArray) { double in
-                        self.airPlaneDataEntry.y = Double(String(format: "%.2f", double))!
-                        self.barChartUpdate()
-                    }
-                    self.requestManager.requestChart(userCollection: userCollection, energyType: self.requestManager.electricArray) { double in
-                        self.electricDataEntry.y = Double(String(format: "%.2f", double))!
-                        self.barChartUpdate()
-                    }
-                    self.requestManager.requestChart(userCollection: userCollection, energyType: self.requestManager.warmArray) { double in
-                        self.warmDataEntry.y = Double(String(format: "%.2f", double))!
-                        self.barChartUpdate()
-                    }
-                }
+            guard querySnapshot != nil else {
+                print("Error fetching snapshots: \(error!)")
+                return
+            }
+            
+            self.requestManager.requestTotal(userCollection: userCollection) { total in
+                self.stopLoading()
+                self.totalCalculationLabel.text = "Total: \(String(format: "%.2f", total)) kg"
+            }
+            
+            self.requestManager.request( userCollection: userCollection, energyType: "Household") {
+                result in
+                self.houseHoldDataEntry.value = Double(String(format: "%.1f", result))!
+                self.pieChartUpdateData()
+            }
+            self.requestManager.request(userCollection: userCollection, energyType: "Transportation") {
+                result in
+                self.transportationDataEntry.value = Double(String(format: "%.1f", result))!
+                self.pieChartUpdateData()
+            }
+            
+            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.carArray) { double in
+                self.carDataEntry.y = Double(String(format: "%.2f", double))!
+                self.barChartUpdate()
+            }
+            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.motorcycleArray) { double in
+                self.motorDataEntry.y = Double(String(format: "%.2f", double))!
+                self.barChartUpdate()
+            }
+            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.busArray) { double in
+                self.busDataEntry.y = Double(String(format: "%.2f", double))!
+                self.barChartUpdate()
+            }
+            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.planeArray) { double in
+                self.airPlaneDataEntry.y = Double(String(format: "%.2f", double))!
+                self.barChartUpdate()
+            }
+            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.electricArray) { double in
+                self.electricDataEntry.y = Double(String(format: "%.2f", double))!
+                self.barChartUpdate()
+            }
+            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.warmArray) { double in
+                self.warmDataEntry.y = Double(String(format: "%.2f", double))!
+                self.barChartUpdate()
             }
         }
     }
 }
+
+
+
+

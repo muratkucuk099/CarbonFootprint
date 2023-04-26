@@ -13,6 +13,7 @@ class HouseHoldViewController: UIViewController {
     @IBOutlet weak var inputTextfield: UITextField!
     @IBOutlet weak var unitLabel: UILabel!
     @IBOutlet weak var myPickerView: UIPickerView!
+    @IBOutlet weak var typeLabel: UILabel!
     var type = ""
     var unit = ""
     var carbonEmission = 0.0
@@ -38,6 +39,7 @@ class HouseHoldViewController: UIViewController {
         unit = requestManager.unitDict[type]!
         myPickerView.reloadAllComponents()
         unitLabel.text = unit
+        typeLabel.text = "Which Type of Your Electric?"
        
     }
     
@@ -47,6 +49,7 @@ class HouseHoldViewController: UIViewController {
         unit = requestManager.unitDict[type]!
         myPickerView.reloadAllComponents()
         unitLabel.text = unit
+        typeLabel.text = "Which Type of Your Warm?"
     }
     
     @IBAction func calculatePress(_ sender: UIButton) {

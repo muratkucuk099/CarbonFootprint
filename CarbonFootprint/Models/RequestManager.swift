@@ -62,6 +62,7 @@ struct RequestManager{
     }
     func requestTotal(userCollection: CollectionReference, completion: @escaping (Double) -> Void){
         userCollection.addSnapshotListener { querySnapshot, error in
+            
             if error != nil {
                 print(error?.localizedDescription as Any)
             } else {
@@ -80,8 +81,7 @@ struct RequestManager{
                             }
                             DispatchQueue.main.async {
                                 completion(Double(String(format: "%.2f", totalAmount))!)
-                                //  self.stopLoading()
-                                //  self.totalCalculationLabel.text = "Total: \(String(format: "%.2f", totalAmount)) kg"
+                                
                             }
                         }
                     }
@@ -89,34 +89,8 @@ struct RequestManager{
             }
         }
     }
-    func firebaseDayCalculation(userCollection: CollectionReference, completion: @escaping (Int) -> Void) {
-        userCollection.getDocuments { (snapshot, error) in
-            guard let documents = snapshot?.documents else {
-                print("Hata: Belge bulunamadı.")
-                return
-            }
-            DispatchQueue.main.async {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "dd MMM yyyy"
-                let firstDocument = documents.first
-                if let firstDate = firstDocument?.data()["Date"] {
-                    
-                    if let date = dateFormatter.date(from: firstDate as! String) {
-                        dateFormatter.dateFormat = "yyyy-MM-dd"
-                        let today = dateFormatter.string(from: Date())
-                        let formattedDate = dateFormatter.string(from: date)
-                        let startDate = dateFormatter.date(from: formattedDate)
-                        let endDate = dateFormatter.date(from: today)
-                        let calendar = Calendar.current
-                        let components = calendar.dateComponents([.day], from: startDate!, to: endDate!)
-                        completion(components.day!)
-                    }
-                }
-            }
-        }
-    }
-    func requestChart(userCollection: CollectionReference, energyType: [String], completion: @escaping (Double) -> Void) {
-        let query = userCollection.whereField("GeneralType",  in: energyType)
+    func requestChart(userCollection: CollectionReference, generalType: [String], completion: @escaping (Double) -> Void) {
+        let query = userCollection.whereField("GeneralType",  in: generalType)
         var totalAmount = 0.0
         
         DispatchQueue.global(qos: .background).async {
@@ -136,23 +110,23 @@ struct RequestManager{
             }
         }
     }
-        func uploadData(type: String, navigationController: UINavigationController, energyType: String, emission: Double, viewController: UIViewController){
-            let dateString = getDate()
-            let documentId = UUID().uuidString
-            let db = Firestore.firestore()
-            let user = Auth.auth().currentUser
-            let userCollection = db.collection("users").document(user!.uid).collection(user!.email!)
-            if emission != nil {
-                userCollection.document(documentId).setData(["EnergyType": energyType, "Date": dateString, "date": FieldValue.serverTimestamp(), "GeneralType": type, "CarbonEmission": emission]) {err in if let err = err {
-                    print("Döküman eklenemedi \(err.localizedDescription)")
-                    alertDialog(navigationController: navigationController, viewController: viewController, title: "Error", message: "Your carbon emission could not be calculated!")
-                    
-                } else {
-                    print("Döküman kaydı eklendi")
-                    let title = "\(emission) kg"
-                    let message = "You have released \(emission) kg of carbon emissions!"
-                    alertDialog(navigationController: navigationController, viewController: viewController, title: title, message: message)
-                }
+    func uploadData(type: String, navigationController: UINavigationController, energyType: String, emission: Double, viewController: UIViewController){
+        let dateString = getDate()
+        let documentId = UUID().uuidString
+        let db = Firestore.firestore()
+        let user = Auth.auth().currentUser
+        let userCollection = db.collection("users").document(user!.uid).collection(user!.email!)
+        if emission != nil {
+            userCollection.document(documentId).setData(["EnergyType": energyType, "Date": dateString, "date": FieldValue.serverTimestamp(), "GeneralType": type, "CarbonEmission": emission]) {err in if let err = err {
+                print("Döküman eklenemedi \(err.localizedDescription)")
+                alertDialog(navigationController: navigationController, viewController: viewController, title: "Error", message: "Your carbon emission could not be calculated!")
+                
+            } else {
+                print("Döküman kaydı eklendi")
+                let title = "\(emission) kg"
+                let message = "You have released \(emission) kg of carbon emissions!"
+                alertDialog(navigationController: navigationController, viewController: viewController, title: title, message: message)
+            }
             }
         }
         
@@ -166,7 +140,6 @@ struct RequestManager{
                 print("Döküman eklenemedi \(err.localizedDescription)")
             } else {
                 print("Döküman kaydı eklendi")
-                
             }
             }
         }
@@ -179,5 +152,4 @@ struct RequestManager{
             viewController.present(alertController, animated: true)
         }
     }
-    //  "\(emission) kg", message: "You have released \(emission) kg of carbon footprint"
 }

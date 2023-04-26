@@ -72,7 +72,6 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                     self.tableView.reloadData()
                 }
-                
             }
         }
     }

@@ -35,7 +35,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.layer.cornerRadius = 15 // Köşelerin yuvarlatılması
         mapView.layer.borderWidth = 2 // Kenarlık kalınlığı
         mapView.layer.borderColor = UIColor.gray.cgColor
-        distanceLabel.layer.cornerRadius = 15
+        distanceLabel.layer.cornerRadius = 12
         distanceLabel.layer.borderWidth = 2
         distanceLabel.layer.borderColor = UIColor.gray.cgColor// Kenarlık rengi
     }
@@ -53,7 +53,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("updateeeeee")
         guard let newLocation = locations.last else { return }
         
         if let lastLocation = self.lastLocation {

@@ -19,8 +19,11 @@ class TabBarController: UITabBarController {
                 // UINavigationController'ın rootViewController'ının gezinme çubuğuna başlık ekleyin
             navController.topViewController?.navigationItem.title = "Your Emission"
             }
-        if let nav3Controller = viewControllers?.last as? UINavigationController {
-            nav3Controller.topViewController?.navigationItem.title = "Past Emission"
+        if let navThirdController = viewControllers?.last as? UINavigationController {
+            navThirdController.topViewController?.navigationItem.title = "Past Emission"
+        }
+        if let navSecondController = viewControllers?[1] as? UINavigationController {
+            navSecondController.topViewController?.navigationItem.title = "Average Emission Tree"
         }
         
     }
