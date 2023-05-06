@@ -62,7 +62,6 @@ struct RequestManager{
     }
     func requestTotal(userCollection: CollectionReference, completion: @escaping (Double) -> Void){
         userCollection.addSnapshotListener { querySnapshot, error in
-            
             if error != nil {
                 print(error?.localizedDescription as Any)
             } else {

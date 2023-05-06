@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043EB3502A03E4540012F1E8 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EB34F2A03E4540012F1E8 /* LaunchScreenViewController.swift */; };
 		045563B029DEBA7200CA5567 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045563AF29DEBA7200CA5567 /* AppDelegate.swift */; };
 		045563B229DEBA7200CA5567 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045563B129DEBA7200CA5567 /* SceneDelegate.swift */; };
 		045563B429DEBA7200CA5567 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045563B329DEBA7200CA5567 /* LoginViewController.swift */; };
 		045563B729DEBA7200CA5567 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045563B529DEBA7200CA5567 /* Main.storyboard */; };
 		045563B929DEBA7300CA5567 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 045563B829DEBA7300CA5567 /* Assets.xcassets */; };
 		045563BC29DEBA7300CA5567 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045563BA29DEBA7300CA5567 /* LaunchScreen.storyboard */; };
+		047949162A03ED3B007599AC /* plant.json in Resources */ = {isa = PBXBuildFile; fileRef = 047949152A03ED3B007599AC /* plant.json */; };
+		04BEAC802A06FAF300A1D7EE /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEAC7F2A06FAF300A1D7EE /* PushNotification.swift */; };
 		04DECA0429E57B6800D99046 /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DECA0329E57B6800D99046 /* Information.swift */; };
 		04DECA0629E5A5BB00D99046 /* TreeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DECA0529E5A5BB00D99046 /* TreeRequest.swift */; };
 		04F218E929E014AD000C213F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F218E829E014AD000C213F /* MapViewController.swift */; };
@@ -32,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		043EB34F2A03E4540012F1E8 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		045563AC29DEBA7200CA5567 /* CarbonFootprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarbonFootprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		045563AF29DEBA7200CA5567 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		045563B129DEBA7200CA5567 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +44,8 @@
 		045563B829DEBA7300CA5567 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		045563BB29DEBA7300CA5567 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		045563BD29DEBA7300CA5567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		047949152A03ED3B007599AC /* plant.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plant.json; sourceTree = "<group>"; };
+		04BEAC7F2A06FAF300A1D7EE /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		04DECA0329E57B6800D99046 /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		04DECA0529E5A5BB00D99046 /* TreeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeRequest.swift; sourceTree = "<group>"; };
 		04F218E829E014AD000C213F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -101,17 +107,40 @@
 		045563AE29DEBA7200CA5567 /* CarbonFootprint */ = {
 			isa = PBXGroup;
 			children = (
-				045563AF29DEBA7200CA5567 /* AppDelegate.swift */,
-				045563B129DEBA7200CA5567 /* SceneDelegate.swift */,
-				04F4960B29DEBC0600555E8C /* K.swift */,
+				047949122A03E6ED007599AC /* Supporting Fİles */,
 				04F4962229DEBDA500555E8C /* Views */,
 				04F4961429DEBC7800555E8C /* Controllers */,
 				04F4960D29DEBC1C00555E8C /* Models */,
 				045563B829DEBA7300CA5567 /* Assets.xcassets */,
-				045563BD29DEBA7300CA5567 /* Info.plist */,
+				047949152A03ED3B007599AC /* plant.json */,
 				04F4962929DEC02200555E8C /* GoogleService-Info.plist */,
+				045563BD29DEBA7300CA5567 /* Info.plist */,
 			);
 			path = CarbonFootprint;
+			sourceTree = "<group>";
+		};
+		047949122A03E6ED007599AC /* Supporting Fİles */ = {
+			isa = PBXGroup;
+			children = (
+				045563AF29DEBA7200CA5567 /* AppDelegate.swift */,
+				045563B129DEBA7200CA5567 /* SceneDelegate.swift */,
+				04F4960B29DEBC0600555E8C /* K.swift */,
+			);
+			name = "Supporting Fİles";
+			path = "Supporting Fİles";
+			sourceTree = "<group>";
+		};
+		04EE8F352A06DA230096EDBA /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				045563B329DEBA7200CA5567 /* LoginViewController.swift */,
+				04F4961A29DEBCFD00555E8C /* InformationViewController.swift */,
+				04F4961C29DEBD1800555E8C /* MainPageViewController.swift */,
+				04F4961E29DEBD3500555E8C /* TreeViewController.swift */,
+				04F218E829E014AD000C213F /* MapViewController.swift */,
+				043EB34F2A03E4540012F1E8 /* LaunchScreenViewController.swift */,
+			);
+			path = Pages;
 			sourceTree = "<group>";
 		};
 		04F4960D29DEBC1C00555E8C /* Models */ = {
@@ -121,6 +150,7 @@
 				04F4961029DEBC4900555E8C /* CalculationManager.swift */,
 				04DECA0329E57B6800D99046 /* Information.swift */,
 				04DECA0529E5A5BB00D99046 /* TreeRequest.swift */,
+				04BEAC7F2A06FAF300A1D7EE /* PushNotification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,11 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				04F4961529DEBC8100555E8C /* Calculation */,
-				045563B329DEBA7200CA5567 /* LoginViewController.swift */,
-				04F4961A29DEBCFD00555E8C /* InformationViewController.swift */,
-				04F4961C29DEBD1800555E8C /* MainPageViewController.swift */,
-				04F4961E29DEBD3500555E8C /* TreeViewController.swift */,
-				04F218E829E014AD000C213F /* MapViewController.swift */,
+				04EE8F352A06DA230096EDBA /* Pages */,
 				0418AAF829E439E900AA0B7D /* PropertyController */,
 			);
 			path = Controllers;
@@ -237,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				045563BC29DEBA7300CA5567 /* LaunchScreen.storyboard in Resources */,
+				047949162A03ED3B007599AC /* plant.json in Resources */,
 				04F4962629DEBDCD00555E8C /* FeedTableViewCell.xib in Resources */,
 				04F4962A29DEC02200555E8C /* GoogleService-Info.plist in Resources */,
 				045563B929DEBA7300CA5567 /* Assets.xcassets in Resources */,
@@ -295,8 +322,10 @@
 			files = (
 				04F4960F29DEBC3100555E8C /* RequestManager.swift in Sources */,
 				04F4962129DEBD6E00555E8C /* TabBarController.swift in Sources */,
+				04BEAC802A06FAF300A1D7EE /* PushNotification.swift in Sources */,
 				04DECA0429E57B6800D99046 /* Information.swift in Sources */,
 				045563B429DEBA7200CA5567 /* LoginViewController.swift in Sources */,
+				043EB3502A03E4540012F1E8 /* LaunchScreenViewController.swift in Sources */,
 				04F4960C29DEBC0600555E8C /* K.swift in Sources */,
 				04F4961129DEBC4900555E8C /* CalculationManager.swift in Sources */,
 				04F4961729DEBCB900555E8C /* TransportationViewController.swift in Sources */,
@@ -459,8 +488,9 @@
 				DEVELOPMENT_TEAM = F5DCDDDQPA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CarbonFootprint/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location for calculate your carbon emission!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -489,8 +519,9 @@
 				DEVELOPMENT_TEAM = F5DCDDDQPA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CarbonFootprint/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location for calculate your carbon emission!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

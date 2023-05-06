@@ -36,17 +36,18 @@ struct TreeRequest{
             }
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "d MMMM y"
-            let firstDocument = documents.first
-            if let firstDate = firstDocument!.data()["Date"] as? String {
-                if let date = dateFormatter.date(from: firstDate) {
-                    dateFormatter.dateFormat = "yyyy-MM-dd"
-                    let today = dateFormatter.string(from: Date())
-                    let formattedDate = dateFormatter.string(from: date)
-                    let startDate = dateFormatter.date(from: formattedDate)
-                    let endDate = dateFormatter.date(from: today)
-                    let calendar = Calendar.current
-                    let components = calendar.dateComponents([.day], from: startDate!, to: endDate!)
-                    completion(components.day!)
+            if let firstDocument = documents.first{
+                if let firstDate = firstDocument.data()["Date"] as? String {
+                    if let date = dateFormatter.date(from: firstDate) {
+                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                        let today = dateFormatter.string(from: Date())
+                        let formattedDate = dateFormatter.string(from: date)
+                        let startDate = dateFormatter.date(from: formattedDate)
+                        let endDate = dateFormatter.date(from: today)
+                        let calendar = Calendar.current
+                        let components = calendar.dateComponents([.day], from: startDate!, to: endDate!)
+                        completion(components.day! + 1)
+                    }
                 }
             }
         }
@@ -58,9 +59,8 @@ struct TreeRequest{
         listener = userCollection.addSnapshotListener { querySnapshot, error in
             
             if error != nil {
-                print(error?.localizedDescription as Any)
+                print("Request Total Error: \(error?.localizedDescription as Any)")
             } else {
-                
                 if (querySnapshot?.documents) != nil {
                     let query = userCollection.whereField("CarbonEmission",  isGreaterThan: 0)
                     var totalAmount = 0.0
@@ -75,7 +75,6 @@ struct TreeRequest{
                             }
                             DispatchQueue.main.async {
                                 completion(Double(String(format: "%.2f", totalAmount))!)
-                                
                             }
                         }
                     }

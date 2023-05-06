@@ -13,6 +13,7 @@ pod 'Firebase/Storage'
 pod 'IQKeyboardManager' 
 pod 'IQKeyboardManagerSwift'
 pod 'Charts'
+pod 'lottie-ios'
   # Pods for CarbonFootprint
 
 end
