@@ -36,7 +36,7 @@ class HouseHoldViewController: UIViewController {
     @IBAction func electricPress(_ sender: UIButton) {
         currencyArray = ["Electric"]
         type = "Electric"
-        unit = requestManager.unitDict[type]!
+        unit = "\(requestManager.unitDict[type]!) Consumption?"
         myPickerView.reloadAllComponents()
         unitLabel.text = unit
         typeLabel.text = "Which Type of Your Electric?"
@@ -46,7 +46,7 @@ class HouseHoldViewController: UIViewController {
     @IBAction func warmPress(_ sender: UIButton) {
         currencyArray = requestManager.warmArray
         type = currencyArray[0]
-        unit = requestManager.unitDict[type]!
+        unit = "\(requestManager.unitDict[type]!) Consumption?"
         myPickerView.reloadAllComponents()
         unitLabel.text = unit
         typeLabel.text = "Which Type of Your Warm?"
@@ -78,7 +78,7 @@ extension HouseHoldViewController: UIPickerViewDelegate{
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         type = currencyArray[row]
-        unit = requestManager.unitDict[type]!
+        unit = "\(requestManager.unitDict[type]!) Consumption?"
         unitLabel.text = unit
     }
 }

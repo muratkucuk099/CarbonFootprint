@@ -21,12 +21,11 @@ class MainPageViewController: UIViewController {
     let transportationDataEntry = PieChartDataEntry(value: 10, icon: UIImage(systemName: "car"))
     let houseHoldDataEntry = PieChartDataEntry(value: 10, icon: UIImage(systemName: "house"))
     let carDataEntry = BarChartDataEntry(x: 1, y: 20, icon: UIImage(systemName: "car.side"))
-    let motorDataEntry = BarChartDataEntry(x: 3, y: 20, icon: UIImage(systemName: "bicycle"))
+    var motorDataEntry = BarChartDataEntry(x: 3, y: 20, icon: UIImage(named: "moto"))
     let busDataEntry = BarChartDataEntry(x: 2, y: 20, icon: UIImage(systemName: "bus.fill"))
     let airPlaneDataEntry = BarChartDataEntry(x: 4, y: 20, icon: UIImage(systemName: "airplane"))
     let electricDataEntry = BarChartDataEntry(x : 5, y: 20, icon: UIImage(systemName: "bolt"))
     let warmDataEntry = BarChartDataEntry(x: 6, y: 20, icon: UIImage(systemName: "flame"))
-    
     var pieNumberofDataEntry = [PieChartDataEntry]()
     var barNumberofDataEntry = [BarChartDataEntry]()
     var entries: [BarChartDataEntry] = []
@@ -36,6 +35,15 @@ class MainPageViewController: UIViewController {
     let notification = PushNotification()
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let iconImage = UIImage(named: "motob") else { return }
+        let size = CGSize(width: 32, height: 32) // Boyutu buradan ayarlayabilirsiniz
+        let renderer = UIGraphicsImageRenderer(size: size)
+        let resizedIcon = renderer.image { _ in
+            iconImage.draw(in: CGRect(origin: .zero, size: size))
+        }
+        motorDataEntry.icon = resizedIcon
+       
+        //motorDataEntry.icon.
         notification.notification()
         entries = [
             carDataEntry,
@@ -86,55 +94,48 @@ class MainPageViewController: UIViewController {
     }
     
     func firebaseGetData() {
-        guard let user = Auth.auth().currentUser else {
-            print("Current user not found.")
-            return
-        }
-        let db = Firestore.firestore()
-        let userCollection = db.collection("users").document(user.uid).collection(user.email!)
-        userCollection.addSnapshotListener { querySnapshot, error in
+        let userCollection = requestManager.getUserCollection()
+        userCollection.addSnapshotListener { [self] querySnapshot, error in
             guard querySnapshot != nil else {
                 print("Error fetching snapshots: \(error!)")
                 return
             }
-            self.requestManager.requestTotal(userCollection: userCollection) { total in
+            self.requestManager.requestTotal() { total in
                 self.stopLoading()
                 self.totalCalculationLabel.text = "Total: \(String(format: "%.2f", total)) kg"
             }
-            self.requestManager.request( userCollection: userCollection, energyType: "Household") {
+            self.requestManager.request(energyType: "Household") {
                 result in
                 self.houseHoldDataEntry.value = Double(String(format: "%.1f", result))!
                 self.pieChartUpdateData()
             }
-            self.requestManager.request(userCollection: userCollection, energyType: "Transportation") {
+            self.requestManager.request(energyType: "Transportation") {
                 result in
                 self.transportationDataEntry.value = Double(String(format: "%.1f", result))!
                 self.pieChartUpdateData()
             }
-            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.carArray) { double in
-                self.carDataEntry.y = Double(String(format: "%.2f", double))!
-                self.barChartUpdate()
+            let entryDicts = [
+                requestManager.carArray: carDataEntry,
+                requestManager.motorcycleArray: motorDataEntry,
+                requestManager.busArray: busDataEntry,
+                requestManager.planeArray: airPlaneDataEntry,
+                requestManager.electricArray: electricDataEntry,
+                requestManager.warmArray: warmDataEntry
+            ]
+            for entryDict in entryDicts{
+                requestManager.requestChart(generalType: entryDict.key) { double in
+                    entryDict.value.y = Double(String(format: "%.2f", double))!
+                    self.barChartUpdate()
+                }
             }
-            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.motorcycleArray) { double in
-                self.motorDataEntry.y = Double(String(format: "%.2f", double))!
-                self.barChartUpdate()
-            }
-            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.busArray) { double in
-                self.busDataEntry.y = Double(String(format: "%.2f", double))!
-                self.barChartUpdate()
-            }
-            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.planeArray) { double in
-                self.airPlaneDataEntry.y = Double(String(format: "%.2f", double))!
-                self.barChartUpdate()
-            }
-            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.electricArray) { double in
-                self.electricDataEntry.y = Double(String(format: "%.2f", double))!
-                self.barChartUpdate()
-            }
-            self.requestManager.requestChart(userCollection: userCollection, generalType: self.requestManager.warmArray) { double in
-                self.warmDataEntry.y = Double(String(format: "%.2f", double))!
-                self.barChartUpdate()
-            }
+        }
+    }
+}
+extension UIColor {
+    func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
+        return UIGraphicsImageRenderer(size: size).image { rendererContext in
+            self.setFill()
+            rendererContext.fill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
         }
     }
 }

@@ -81,6 +81,7 @@
 		0418AAF829E439E900AA0B7D /* PropertyController */ = {
 			isa = PBXGroup;
 			children = (
+				043EB34F2A03E4540012F1E8 /* LaunchScreenViewController.swift */,
 				04F4962029DEBD6E00555E8C /* TabBarController.swift */,
 			);
 			path = PropertyController;
@@ -107,10 +108,10 @@
 		045563AE29DEBA7200CA5567 /* CarbonFootprint */ = {
 			isa = PBXGroup;
 			children = (
-				047949122A03E6ED007599AC /* Supporting Fİles */,
+				04F4960D29DEBC1C00555E8C /* Models */,
 				04F4962229DEBDA500555E8C /* Views */,
 				04F4961429DEBC7800555E8C /* Controllers */,
-				04F4960D29DEBC1C00555E8C /* Models */,
+				047949122A03E6ED007599AC /* Supporting Files */,
 				045563B829DEBA7300CA5567 /* Assets.xcassets */,
 				047949152A03ED3B007599AC /* plant.json */,
 				04F4962929DEC02200555E8C /* GoogleService-Info.plist */,
@@ -119,14 +120,14 @@
 			path = CarbonFootprint;
 			sourceTree = "<group>";
 		};
-		047949122A03E6ED007599AC /* Supporting Fİles */ = {
+		047949122A03E6ED007599AC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				045563AF29DEBA7200CA5567 /* AppDelegate.swift */,
 				045563B129DEBA7200CA5567 /* SceneDelegate.swift */,
 				04F4960B29DEBC0600555E8C /* K.swift */,
 			);
-			name = "Supporting Fİles";
+			name = "Supporting Files";
 			path = "Supporting Fİles";
 			sourceTree = "<group>";
 		};
@@ -138,7 +139,6 @@
 				04F4961C29DEBD1800555E8C /* MainPageViewController.swift */,
 				04F4961E29DEBD3500555E8C /* TreeViewController.swift */,
 				04F218E829E014AD000C213F /* MapViewController.swift */,
-				043EB34F2A03E4540012F1E8 /* LaunchScreenViewController.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -488,12 +488,14 @@
 				DEVELOPMENT_TEAM = F5DCDDDQPA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CarbonFootprint/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Leafy Companion";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location for calculate your carbon emission!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -519,12 +521,14 @@
 				DEVELOPMENT_TEAM = F5DCDDDQPA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CarbonFootprint/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Leafy Companion";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location for calculate your carbon emission!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -51,8 +51,8 @@ struct PushNotification{
         ]
         let randomIndex = Int.random(in: 0..<notificationMessages.count)
         let body = notificationMessages[randomIndex]
-        let hour = 12
-        let minute = 00
+        let hour = 19
+        let minute = 45
         
         let notificationCenter = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()

@@ -15,29 +15,17 @@ class LaunchScreenViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        // 2. Start LottieAnimationView with animation name (without extension)
-        
         animationView = .init(name: "plant")
         
         animationView!.frame = view.bounds
-        
-        // 3. Set animation content mode
-        
         animationView!.contentMode = .scaleAspectFit
-        
-        // 4. Set animation loop mode
-        animationView!.animationSpeed = 1.2
+        animationView!.animationSpeed = 1.6
         animationView!.loopMode = .loop
-        
-        // 5. Adjust animation speed
         view.addSubview(animationView!)
-        
-        // 6. Play animation
         animationView!.play()
-        var window: UIWindow?
+        
         let currentUser = Auth.auth().currentUser
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             if currentUser != nil {
                 let board = UIStoryboard(name: "Main", bundle: nil)
                 let tabBar = board.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController

@@ -23,7 +23,7 @@ struct RequestManager{
     let hoursArray = Array(0...20)
     let planeArray = ["Plane"]
     let electricArray = ["Electric"]
-    let unitDict = ["Electric": "kwh", "Natural Gas": "m3", "Coal": "kg", "LPG": "lt", "Fuel Oil": "lt", "Biogas": "m3/tonne"]
+    let unitDict = ["Electric": "Kwh", "Natural Gas": "M3", "Coal": "Kg", "LPG": "Lt", "Fuel Oil": "Lt", "Biogas": "M3/Tonne"]
     
     func getDate()-> String{
         let dateFormatter = DateFormatter()
@@ -32,15 +32,14 @@ struct RequestManager{
         return dateString
     }
     func getUserCollection()-> CollectionReference{
-        let documentId = UUID().uuidString
         let db = Firestore.firestore()
         let user = Auth.auth().currentUser
         let userCollection = db.collection("users").document(user!.uid).collection(user!.email!)
         return userCollection
     }
     
-    func request(userCollection: CollectionReference, energyType: String, completion: @escaping (Float) -> Void) {
-        let query = userCollection.whereField("EnergyType",  isEqualTo: energyType)
+    func request(energyType: String, completion: @escaping (Float) -> Void) {
+        let query = getUserCollection().whereField("EnergyType",  isEqualTo: energyType)
         var totalAmount = 0.0
         
         DispatchQueue.global(qos: .background).async {
@@ -60,14 +59,14 @@ struct RequestManager{
             }
         }
     }
-    func requestTotal(userCollection: CollectionReference, completion: @escaping (Double) -> Void){
-        userCollection.addSnapshotListener { querySnapshot, error in
+    func requestTotal(completion: @escaping (Double) -> Void){
+        getUserCollection().addSnapshotListener { querySnapshot, error in
             if error != nil {
                 print(error?.localizedDescription as Any)
             } else {
                 
                 if (querySnapshot?.documents) != nil {
-                    let query = userCollection.whereField("CarbonEmission",  isGreaterThan: 0)
+                    let query = getUserCollection().whereField("CarbonEmission",  isGreaterThan: 0)
                     var totalAmount = 0.0
                     query.getDocuments { (querySnapshot, error) in
                         if let error = error {
@@ -88,8 +87,8 @@ struct RequestManager{
             }
         }
     }
-    func requestChart(userCollection: CollectionReference, generalType: [String], completion: @escaping (Double) -> Void) {
-        let query = userCollection.whereField("GeneralType",  in: generalType)
+    func requestChart(generalType: [String], completion: @escaping (Double) -> Void) {
+        let query = getUserCollection().whereField("GeneralType",  in: generalType)
         var totalAmount = 0.0
         
         DispatchQueue.global(qos: .background).async {
@@ -112,11 +111,8 @@ struct RequestManager{
     func uploadData(type: String, navigationController: UINavigationController, energyType: String, emission: Double, viewController: UIViewController){
         let dateString = getDate()
         let documentId = UUID().uuidString
-        let db = Firestore.firestore()
-        let user = Auth.auth().currentUser
-        let userCollection = db.collection("users").document(user!.uid).collection(user!.email!)
-        if emission != nil {
-            userCollection.document(documentId).setData(["EnergyType": energyType, "Date": dateString, "date": FieldValue.serverTimestamp(), "GeneralType": type, "CarbonEmission": emission]) {err in if let err = err {
+         if emission != nil {
+            getUserCollection().document(documentId).setData(["EnergyType": energyType, "Date": dateString, "date": FieldValue.serverTimestamp(), "GeneralType": type, "CarbonEmission": emission]) {err in if let err = err {
                 print("Döküman eklenemedi \(err.localizedDescription)")
                 alertDialog(navigationController: navigationController, viewController: viewController, title: "Error", message: "Your carbon emission could not be calculated!")
                 

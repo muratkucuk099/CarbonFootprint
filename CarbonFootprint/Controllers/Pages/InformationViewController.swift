@@ -26,6 +26,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         firebaseGetData()
         let exitButton = UIBarButtonItem(title: "Çıkış", style: .plain, target: self, action: #selector(exitTapped))
         exitButton.image = UIImage(systemName: "rectangle.portrait.and.arrow.right")
+        exitButton.tintColor = UIColor(red: 54/255, green: 104/255, blue: 55/255, alpha: 1)
         navigationItem.rightBarButtonItem = exitButton
     }
     
@@ -47,20 +48,19 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         let userCollection = db.collection("users").document(user!.uid).collection(user!.email!).order(by: "date", descending: true)
         userCollection.addSnapshotListener { querySnapshot, error in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             } else {
                 
                 if let queryDocument = querySnapshot?.documents {
                     self.informationArray.removeAll()
                     
                     for document in queryDocument{
-                        
                         if let type = document.get("GeneralType") as? String{
                             if let energy = document.get("EnergyType") as? String{
                                 if let amount = document.get("CarbonEmission") as? Double{
                                     if let date = document.get("Date") as? String{
                                         if let documentId = document.documentID as? String{
-                                            let informationString = "On \(date) you released \(amount) kg \(energy)  \(type)"
+                                            let informationString = "On \(date) you released \(amount) kg of carbon by \(type)"
                                             let information = Information(documentId: documentId, informationString: informationString)
                                             self.informationArray.append(information)
                                         }
